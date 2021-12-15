@@ -1,0 +1,335 @@
+// variable
+$clr-black: #000000;
+$clr-white: #ffffff;
+
+// breakpoint
+$screen-small-mobile: 360px;
+$screen-mobile: 375px;
+$screen-large-mobile: 411px;
+$screen-tablet: 768px;
+$mdtablet: 990px;
+$screen-large-tablet: 1024px;
+$screen-desktop: 1200px;
+$screen-large-desktop: 1600px;
+$screen-retina: 1900px;
+
+// mixin
+@mixin min-responsive ($media) {
+    @media (min-width: $media) {
+        @content;
+    }
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 12px;
+
+    @include min-responsive($screen-tablet) {
+        font-size: 14px;
+    }
+
+    @include min-responsive($screen-large-desktop) {
+        font-size: 16px;
+    }
+}
+
+body {
+    background-color: $clr-black;
+    font-family: 'Roboto', sans-serif;
+    color: $clr-white;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    vertical-align: top;
+    -ms-interpolation-mode: bicubic;
+    border-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem 2rem;
+    z-index: 1;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-logo {
+        letter-spacing: 2px;
+        font-size: 1.2rem;
+    }
+
+    &-menu {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+    }
+
+    &-links a img {
+        width: 24px;
+        height: auto;
+    }
+}
+
+.container {
+    max-height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+}
+
+.panel {
+    scroll-snap-align: start;
+    height: 100vh;
+}
+
+.hero {
+    position: relative;
+    background: url('images/background.png');
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    padding: 4rem 1rem;
+    overflow: hidden;
+
+    &-tagline {
+        position: absolute;
+        top: 40vh !important;
+        left: 15vw !important;
+        font-family: 'Saira Stencil One', cursive;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 3rem;
+        z-index: 4;
+
+        @include min-responsive($screen-mobile) {
+            left: 23vw !important;
+        }
+
+        @include min-responsive($screen-tablet) {
+            left: 35vw !important;
+        }
+
+        @include min-responsive($screen-large-tablet) {
+            left: 40vw !important;
+        }
+
+        @include min-responsive($screen-retina) {
+            left: 43vw !important;
+        }
+    }
+
+    &-earth {
+        position: absolute;
+        top: 25vh !important;
+        width: 100%;
+        max-width: 350px;
+        left: 0 !important;
+
+        @include min-responsive($screen-mobile) {
+            left: 6vw !important;
+        }
+
+        @include min-responsive($screen-large-mobile) {
+            left: 8vw !important;
+        }
+
+        @include min-responsive($screen-tablet) {
+            top: 28vh !important;
+            left: 30vw !important;
+        }
+
+        @include min-responsive($screen-large-tablet) {
+            left: 35vw !important;
+        }
+
+        @include min-responsive($screen-desktop) {
+            top: 25vh !important;
+            left: 35vw !important;
+            max-width: 400px;
+        }
+
+        @include min-responsive($screen-retina) {
+            top: 30vh;
+            left: 42vw;
+        }
+    }
+
+    &-mid {
+        position: absolute;
+        bottom: 0 !important;
+        left: -20vw !important;
+        right: unset !important;
+        top: unset !important;
+        z-index: 1;
+        width: 120vw;
+        height: auto;
+
+        @include min-responsive($screen-desktop) {
+            bottom: -30vh !important;
+        }
+    }
+
+    &-fore {
+        position: absolute;
+        right: -70vw !important;
+        top: 0 !important;
+        left: unset !important;
+        z-index: 2;
+
+        @include min-responsive($screen-desktop) {
+            bottom: 0 !important;
+            right: -10vw !important;
+            height: 100vh;
+        }
+    }
+
+    &-rock {
+        position: absolute;
+        top: 20vh !important;
+        left: 5vw !important;
+        width: 60px;
+        height: auto;
+
+        @include min-responsive($screen-desktop) {
+            width: 160px;
+        }
+    }
+}
+
+.planets {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 32px;
+
+    @include min-responsive($screen-desktop) {
+        padding: 50px;
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        @include min-responsive($screen-desktop) {
+            flex-direction: row;
+        }
+    }
+
+    &-image {
+        width: 300px;
+        @include min-responsive($screen-desktop) {
+            width: 500px;
+        }
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &-detail {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        @include min-responsive($screen-desktop) {
+            gap: 3rem;
+            margin-left: -50px;
+        }
+        &-title {
+            display: flex;
+            align-items: center;
+        }
+        &-number {
+            font-size: 3rem;
+            font-family: 'Saira Stencil One', cursive;
+            font-size: 6rem;
+            color: #999999;
+        }
+        &-name {
+            font-size: 3rem;
+            font-family: 'Saira Stencil One', cursive;
+        }
+        &-desc {
+            padding-left: 0;
+            width: 300px;
+            @include min-responsive($screen-desktop) {
+                padding-left: 80px;
+                width: 600px;
+            }
+            p {
+                font-size: 1.2rem;
+                line-height: 1.5;
+            }
+            ul {
+                margin-top: 50px;
+                li {
+                    display: block;
+                    font-size: 1.2rem;
+                    margin-bottom: 24px;
+                    @include min-responsive($screen-desktop) {
+                        display: inline;
+                        margin-bottom: 0;
+                        margin-right: 24px;
+                    }
+                }
+            }
+        }
+
+    }
+
+    &-links {
+        display: none;
+
+        @include min-responsive($screen-desktop) {
+            display: flex;
+            width: 100vw;
+            justify-content: space-evenly;
+        }
+        &.swiper-pagination-bullet {
+            opacity: 0.2;
+            outline: none;
+        }
+
+        &.swiper-pagination-bullet-active {
+            color: #fff;
+            opacity: 1;
+        }
+    }
+}
+
+.swiper-pagination-clickable .swiper-pagination-bullet {
+    background: transparent;
+}
